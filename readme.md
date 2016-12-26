@@ -49,14 +49,12 @@ dbUri.parse('example.com/db_name', defaults);
   database: 'db_name' }
 */
 
-// resolve an incomplete uri with defaults
+// fill an incomplete uri with defaults
 dbUri.resolve('example.com/db_name', defaults);
 // 'mysql://username:password@example.com:12345/db_name'
 
 // stringify a db connection object
 dbUri.stringify({
-  uri: 'example.com/db_name',
-  fullUri: 'mysql://username:password@example.com:12345/db_name',
   protocol: 'mysql',
   host: 'example.com',
   port: 12345,
