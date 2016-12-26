@@ -1,6 +1,6 @@
 {
   "name": "parse-dburi",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Parse and stringify a DB URI",
   "author": "Diego Guerra <dgoguerra.or@gmail.com>",
   "license": "MIT",
