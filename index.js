@@ -1,20 +1,29 @@
 var trim = require('lodash/trim'),
     parseUrl = require('parse-url');
 
-function stringifyConn(conn) {
+function stringifyConn(conn, defaults) {
+    defaults = defaults || {};
+
+    // try to fill with default values any missing properties
+    var protocol = conn.protocol || defaults.protocol,
+        username = conn.username || defaults.username,
+        password = conn.password || defaults.password,
+        database = conn.database || defaults.database,
+        port = conn.port || defaults.port;
+
     var uri = '';
 
-    if (conn.protocol) {
-        uri = conn.protocol+'://';
+    if (protocol) {
+        uri = protocol+'://';
     }
 
-    if (conn.username || conn.password) {
-        if (conn.username) {
-            uri += encodeURIComponent(conn.username);
+    if (username || password) {
+        if (username) {
+            uri += encodeURIComponent(username);
         }
 
-        if (conn.password) {
-            uri += ':'+encodeURIComponent(conn.password);
+        if (password) {
+            uri += ':'+encodeURIComponent(password);
         }
 
         uri += '@';
@@ -22,11 +31,11 @@ function stringifyConn(conn) {
 
     uri += conn.host;
 
-    if (conn.port) {
-        uri += ':'+conn.port;
+    if (port) {
+        uri += ':'+port;
     }
 
-    uri += '/'+conn.database;
+    uri += '/'+database;
 
     return uri;
 }

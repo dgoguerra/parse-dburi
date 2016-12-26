@@ -44,6 +44,15 @@ tape('parse simple url setting defaults', function(t) {
     t.end();
 });
 
+tape('stringify connection setting defaults', function(t) {
+    var defaults = {protocol: 'mysql', username: 'username', password: 'password', port: 12345};
+
+    var uri = dbUri.stringify({host: 'example.com', database: 'db_name'}, defaults);
+    t.deepEqual(uri, 'mysql://username:password@example.com:12345/db_name');
+
+    t.end();
+});
+
 tape('parse uri overriding default values', function(t) {
     var defaults = {protocol: 'mysql', username: 'username', password: 'password', port: 12345, database: 'db_name'};
 
